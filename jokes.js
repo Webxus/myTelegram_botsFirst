@@ -5,7 +5,7 @@ const TelegramBot = require('node-telegram-bot-api'), // подключаем т
 		token = ''; // токен при создании бота
 
 const bot = new TelegramBot(token, {
-	polling: true
+	polling: true // чтобы бот продолжал свою работу после первого опроса, иначе говоря, делал опросы постоянно
 });
 
 bot.on('message', (msg) => {
@@ -13,6 +13,8 @@ bot.on('message', (msg) => {
 	url = 'https://www.cbr-xml-daily.ru/daily_json.js';
 
 	bot.sendMessage(chatId, msg.text = `Здравстуйте ${msg.chat.first_name}. Бот в стадии тестирования. Основная функция бота - отправка некоторых курсов валют по Центральному Банку РФ при отправке любого сообщения или при старте бота. С наилучшеми пожеланиями! Твой бот :)`);
+
+// ==== Отправляем по Id чата сообщение в обратку - "ЭХО"
 
 	request(url, (error, response, body) => {
 		const data = JSON.parse(body);
