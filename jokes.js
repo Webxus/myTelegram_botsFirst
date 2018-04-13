@@ -12,15 +12,14 @@ bot.on('message', (msg) => {
 	const chatId = msg.from.id,
 	url = 'https://www.cbr-xml-daily.ru/daily_json.js';
 
+	bot.sendMessage(chatId, msg.text = `Здравстуйте ${msg.chat.first_name}. Бот в стадии тестирования. Основная функция бота - отправка некоторых курсов валют по Центральному Банку РФ при отправке любого сообщения или при старте бота. С наилучшеми пожеланиями! Твой бот :)`);
+
 	request(url, (error, response, body) => {
 		const data = JSON.parse(body);
-		console.log(data);
-
-	bot.sendMessage(chatId, `${data.Valute.USD.Name} \nПокупаем за ${data.Valute.USD.Value} \nПродаем по ${data.Valute.USD.Previous} `);
-	bot.sendMessage(chatId, `${data.Valute.EUR.Name} \nПокупаем за ${data.Valute.EUR.Value} \nПродаем по ${data.Valute.EUR.Previous}`);
-	bot.sendMessage(chatId, `${data.Valute.CNY.Name} \nПокупаем за ${data.Valute.CNY.Value} \nПродаем по ${data.Valute.CNY.Previous}`);
-	bot.sendMessage(chatId, `${data.Valute.JPY.Name} \nПокупаем за ${data.Valute.JPY.Value} \nПродаем по ${data.Valute.JPY.Previous}`);
-	console.log();
-	bot.sendMessage(chatId, 'https://www.cbr-xml-daily.ru/');
+		bot.sendMessage(chatId, `${data.Valute.USD.Name} \n ${data.Valute.USD.Previous} => ${data.Valute.USD.Value} `);
+		bot.sendMessage(chatId, `${data.Valute.CNY.Name} \n ${data.Valute.CNY.Previous} => ${data.Valute.CNY.Value}`);
+		bot.sendMessage(chatId, `${data.Valute.EUR.Name} \n ${data.Valute.EUR.Previous} => ${data.Valute.EUR.Value}`);
+		bot.sendMessage(chatId, `${data.Valute.JPY.Name} \n ${data.Valute.JPY.Previous} => ${data.Valute.JPY.Value}`);
+		bot.sendMessage(chatId, 'https://www.cbr-xml-daily.ru/');
 	});
 });
