@@ -2,7 +2,7 @@
 
 const TelegramBot = require('node-telegram-bot-api'), // подключаем телеграм бота
 		request = require('request'), // работаем с "эхо"
-		token = '583190157:AAGp9eLN07Xw2vvizDpLZhQQPLPiiAW-TZw'; // токен при создании бота
+		token = ''; // токен при создании бота
 
 const bot = new TelegramBot(token, {
 	polling: true
